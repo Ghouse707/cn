@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int bucket_size, output_rate, nsec;
+    int packets[100], i, p_remain = 0, drop = 0, mini;
+
+    printf("Enter bucket size: ");
+    scanf("%d", &bucket_size);
+
+    printf("Enter output rate: ");
+    scanf("%d", &output_rate);
+
+    printf("Enter number of seconds to simulate: ");
+    scanf("%d", &nsec);
+
+    // Random packets for each second
+    for (i = 0; i < nsec; i++) {
+        packets[i] = (rand() % 9) + 1;  // random packets between 1 to 9
+    }
+
+    printf("\nSecond\tReceived\tSent\tDropped\tRemaining\n");
+
+    for (i = 0; i < nsec; i++) {
+
+        if (packets[i] + p_remain > bucket_size) {
+            drop = packets[i] + p_remain - bucket_size;
+            p_remain = bucket_size;
+        } else {
+            drop = 0;
+            p_remain += packets[i];
+        }
+
+        mini = (p_remain < output_rate) ? p_remain : output_rate;
+        p_remain -= mini;
+
+        printf("%d\t%d\t\t%d\t%d\t%d\n", i + 1, packets[i], mini, drop, p_remain);
+    }
+
+    return 0;
+}
