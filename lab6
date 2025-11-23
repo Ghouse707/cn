@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, j, k, count;
+    int dmat[10][10], dist[10][10], via[10][10];
+
+    printf("Enter the number of nodes: ");
+    scanf("%d", &n);
+
+    printf("Enter the cost matrix:\n");
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            scanf("%d", &dmat[i][j]);
+            if (i == j)
+                dmat[i][j] = 0;  // cost to itself is 0
+            dist[i][j] = dmat[i][j];
+            via[i][j] = j;
+        }
+    }
+
+    // Bellman-Ford / Distance Vector Updates
+    for (k = 0; k < n; k++) {
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                    via[i][j] = via[i][k];
+                }
+            }
+        }
+    }
+
+    printf("\nRouting Table:\n");
+    for (i = 0; i < n; i++) {
+        printf("\nRouter %d:\n", i);
+        for (j = 0; j < n; j++) {
+            printf("To %d via %d distance = %d\n", j, via[i][j], dist[i][j]);
+        }
+    }
+
+    return 0;
+}
