@@ -1,0 +1,72 @@
+✅ HOW TO RUN PROGRAM 8 (UDP DATAGRAM SOCKET)
+
+(Merged, easy, step-by-step)
+
+Open Terminal
+
+Ctrl + Alt + T
+
+
+Go to the folder where your file is saved
+
+cd ~/Desktop
+
+
+Create the C file
+
+gedit prog8.c &
+
+
+Paste the full Program 8 code → Save → Close.
+
+Compile the program
+
+gcc prog8.c -o prog8
+
+
+Open TWO terminals
+
+➡ Terminal 1 : Run Server
+./prog8
+
+
+Choose:
+
+1
+
+
+Output:
+
+Server is running... waiting for client message...
+
+➡ Terminal 2 : Run Client
+./prog8
+
+
+Choose:
+
+2
+
+
+Client sends:
+
+Message sent to server.
+
+➡ Back to Server Terminal
+
+You will see:
+
+RECEIVED: Hello Server
+Enter the Message to send client:
+
+
+Type reply:
+
+Hi Client
+
+➡ Client Terminal Output
+FROM SERVER: Hi Client
+
+🎉 Program 8 executed successfully.
+
+If you want the same merged steps for Program 7, 9, or 10, just tell me the number!
